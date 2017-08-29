@@ -1,0 +1,30 @@
+#snippet-box{
+    padding-top: 20px;
+    padding-left: 10px;
+}
+
+#snippet-output{
+    text-align: left;
+    color: white;
+    font-family: Menlo, Monaco, 'Courier New', monospace;
+  }
+
+#snippet-box{
+    background-color: #3a3838;
+}
+
+.json-key{
+    color: #9CDCFE;
+    display: inline;
+}
+.json-property{
+    color: #CE9178;
+    display: inline;
+}
+
+[contenteditable]{
+    display:inline;
+}
+[contenteditable]:focus {
+    outline: 0px solid transparent;
+}
