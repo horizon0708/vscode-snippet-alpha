@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import Snippet from './snippet';
-import { CopyButton } from './copyButton';
 
 class ConvertPage extends Component {
-    
-
     render(){
         return(
             <div className="row">
@@ -13,7 +10,6 @@ class ConvertPage extends Component {
             <div className="col-xs-12 col-sm-8">
             <Snippet />
             </div>
-                <CopyButton />
             </div>
         );
     }

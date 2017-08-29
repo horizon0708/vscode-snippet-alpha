@@ -3,22 +3,24 @@ import './snippet.css';
 import React, { Component } from 'react';
 import ContentEditable from 'react-contenteditable';
 import { parseCode } from './codeParseHelper';
+import { CopyButton } from './copyButton';
+import { ClearButton } from './clearButton';
 
 class Snippet extends Component {
     constructor() {
         super();
         this.state = {
-            code: parseCode(`paste your code here]`),
+            code: parseCode(`[paste your code here]`),
             description: '[enter your description here]',
             prefix: '[enter your prefix here]'
         }
-        this.handleCopy = this.handleCopy.bind(this);
         this.handlePaste = this.handlePaste.bind(this);
+        this.handleClear = this.handleClear.bind(this);
     }
     
-
     handleClear(){
-        this.setState({code: parseCode(`[paste your code here]`)});
+        console.log("a");
+        this.setState({ code: parseCode(`[paste your code here]`)});
     }
 
     handleChange(e, state) {
@@ -27,22 +29,13 @@ class Snippet extends Component {
 
     handlePaste(e) {
         let clipboardData, pastedData;
-        e.stopPropagation();
-        e.preventDefault();
-
-        // Get pasted data via clipboard API
         clipboardData = e.clipboardData || window.clipboardData;
         pastedData = clipboardData.getData('Text');
-
-        this.setState({code: parseCode(pastedData)});
-    }
-
-    handleCopy() {
-        var range = document.createRange();
-        range.selectNode(document.getElementById("snippet-output"));
-        window.getSelection().removeAllRanges();
-        window.getSelection().addRange(range);
-        document.execCommand("Copy");
+        if(pastedData.length > 10){
+            e.stopPropagation();
+            e.preventDefault();
+            this.setState({code: parseCode(pastedData)});
+        }
     }
 
     render() {
@@ -57,6 +50,8 @@ class Snippet extends Component {
 
         return (
             <div id='snippet-box'>
+                <ClearButton clearHandler={this.handleClear}/>
+                <CopyButton />
                 <div id='snippet-output'>
                     <div className="json-key">"{<ContentEditable
                         html={this.state.description}

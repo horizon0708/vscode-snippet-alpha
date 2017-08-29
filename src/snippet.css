@@ -1,6 +1,7 @@
 #snippet-box{
     padding-top: 20px;
     padding-left: 10px;
+    position: relative;
 }
 
 #snippet-output{
@@ -28,3 +29,4 @@
 [contenteditable]:focus {
     outline: 0px solid transparent;
 }
+
